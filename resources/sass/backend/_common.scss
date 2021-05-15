@@ -1,0 +1,155 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    line-height: 1.25;
+}
+
+#login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    .login {
+        width: 40%;
+        height: max-content;
+        margin: auto;
+        background: #e3e3e3;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+    }
+}
+
+.main-container {
+    margin: 0 2%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.border-radius-5px {
+    border-radius: 5px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.border-none {
+    border: none;
+    outline: none;
+}
+
+.pagination-container {
+    ul {
+        .page-item {
+            .page-link {
+                background: #343A40;
+                color: #fff;
+                border-radius: 5px;
+                margin: 0 2px;
+            }
+            .page-link:hover {
+                background: #272a2e;
+            }
+        }
+        .page-item.active {
+            .page-link {
+                background: #f39c12;
+                border-color: #343A40;
+            }
+        }
+        .disabled {
+            .page-link {
+                background: #bbb;
+            }
+        }
+    }
+}
+
+.loader {
+    width: 100%;
+    height: 60vh;
+
+    .loading {
+        color: #000;
+        font: 300 5em/150% Impact;
+        text-align: center;
+    }
+
+    .loading:after {
+        content: ' .';
+        animation: dots 1s steps(5, end) infinite;
+    }
+      
+    @keyframes dots {
+        0%, 20% {
+            color: rgba(255,255,255,255);
+            text-shadow:
+            .25em 0 0 rgba(255,255,255,255),
+            .5em 0 0 rgba(255,255,255,255);
+        }
+        40% {
+            color: #000;
+            text-shadow:
+            .25em 0 0 rgba(255,255,255,255),
+            .5em 0 0 rgba(255,255,255,255);
+        }
+        60% {
+            text-shadow:
+            .25em 0 0 #000,
+            .5em 0 0 rgba(255,255,255,255);
+        }
+        80%, 100% {
+            text-shadow:
+            .25em 0 0 #000,
+            .5em 0 0 #000;
+        }
+    }
+}
+
+input.error {
+    border-color: red;
+    outline-color: red;
+}
+
+.border-bottom-999 {
+    border-bottom: 2px solid #999;
+}
+
+.unauthorized {
+    width:100vw; 
+    height:100vh; 
+    background:#ddd;
+    position: relative;
+
+    button {
+        position: absolute;
+        top: 2%;
+        right: 5%;
+        font-size: 18px;
+    }
+}
+
+.password-group {
+    position: relative;
+    span {
+        position: absolute;
+        top: 58%;
+        right: 3%;
+        transform: translate(-55%, -3%);
+        cursor: pointer;       
+    }
+}
+
+.no-auth {
+    height: 80vh;
+}
