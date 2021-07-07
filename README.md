@@ -96,7 +96,7 @@ Initailly only Super Admin is granted all the permissions. All other role has no
 
 First download this repository. Navigate to root of the project and then
 <pre>
-    <code>composer update</code>
+    <code>composer install</code>
     <code>npm install</code>
 </pre>
 
