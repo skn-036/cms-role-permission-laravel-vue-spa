@@ -1,9 +1,9 @@
-import VueRouter from 'vue-router'
-import routes from './routes'
+import VueRouter from 'vue-router';
+import routes from './routes';
 
 const Router = new VueRouter({
-    mode : 'history',
+    mode: 'history',
     routes,
-})
+});
 
-export default Router
+export default Router;

@@ -21,30 +21,31 @@
 
         <h5 class="mt-4"><strong>Assigned To Roles: </strong></h5>
         <ol>
-            <li v-for="(role, index) in permission.data.roles">{{ role.name }}</li>
+            <li v-for="(role, index) in permission.data.roles">
+                {{ role.name }}
+            </li>
         </ol>
 
-        <router-link 
-        :to="{ name : 'permissions' }"
-        class="btn btn-warning my-3">Back
+        <router-link :to="{ name: 'permissions' }" class="btn btn-warning my-3"
+            >Back
         </router-link>
     </section>
 </template>
 
 <script>
-    import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex';
 
-    export default {
-        methods : {
-            ...mapActions(['viewPermission'])
-        },
+export default {
+    methods: {
+        ...mapActions(['viewPermission']),
+    },
 
-        computed : {
-            ...mapGetters(['permission', 'loading'])
-        },
+    computed: {
+        ...mapGetters(['permission', 'loading']),
+    },
 
-        created() {
-            this.viewPermission(this.$route.params.id)
-        }
-    }
+    created() {
+        this.viewPermission(this.$route.params.id);
+    },
+};
 </script>

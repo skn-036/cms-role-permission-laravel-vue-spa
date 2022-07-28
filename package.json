@@ -7,7 +7,10 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
-        "production": "mix --production"
+        "production": "mix --production",
+        "format-vue": "npx prettier --print-width 80 --tab-width 4 --arrow-parens avoid --single-quote --trailing-comma es5 --write resources/js/**/*.vue",
+        "format-js": "npx prettier --print-width 80 --tab-width 4 --arrow-parens avoid --single-quote --trailing-comma es5 --write resources/js/**/*.js",
+        "format-php": "npx prettier --print-width 80 --tab-width 4 --single-quote --trailing-comma es5 --write app/**/*.php"
     },
     "devDependencies": {
         "axios": "^0.21",

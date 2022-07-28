@@ -13,37 +13,42 @@
 
     <section id="edit-product" v-else>
         <h3 class="my-3">Edit Product</h3>
-        <h4 class="text-danger">Form Element for Update Product goes here ....</h4>
+        <h4 class="text-danger">
+            Form Element for Update Product goes here ....
+        </h4>
 
-        <router-link :to="{ name : 'products' }" class="btn btn-warning my-3">Back</router-link>
+        <router-link :to="{ name: 'products' }" class="btn btn-warning my-3"
+            >Back</router-link
+        >
     </section>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                product : {},
-                loading : false
-            }
-        },
+export default {
+    data() {
+        return {
+            product: {},
+            loading: false,
+        };
+    },
 
-        methods : {
-            editProduct(id) {
-                this.loading = true
-                axios.get('/api/admin/products/' + id + '/edit')
+    methods: {
+        editProduct(id) {
+            this.loading = true;
+            axios
+                .get('/api/admin/products/' + id + '/edit')
                 .then(response => {
-                    this.product = response.data
-                    this.loading = false
+                    this.product = response.data;
+                    this.loading = false;
                 })
                 .catch(error => {
-                    console.log(error)
-                }) 
-            }
+                    console.log(error);
+                });
         },
+    },
 
-        created() {
-            this.editProduct(this.$route.params.id)
-        }
-    }
+    created() {
+        this.editProduct(this.$route.params.id);
+    },
+};
 </script>

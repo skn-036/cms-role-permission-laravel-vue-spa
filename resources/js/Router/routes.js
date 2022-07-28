@@ -1,138 +1,129 @@
-import AllProducts from '../components/allProducts'
-import NewProduct from '../Components/newProduct'
-import ViewProduct from '../Components/viewProduct'
-import EditProduct from '../Components/editProduct'
-import DeleteProduct from '../components/delPro'
-import Roles from '../components/roles'
-import NewRole from '../components/newRole'
-import ViewRole from '../components/viewRole'
-import EditRole from '../components/editRole'
-import Permissions from '../components/permissions'
-import NewPermission from '../components/newPermission'
-import ViewPermission from '../components/viewPermission'
-import EditPermission from '../components/editPermission'
+import AllProducts from '../components/allProducts';
+import NewProduct from '../Components/newProduct';
+import ViewProduct from '../Components/viewProduct';
+import EditProduct from '../Components/editProduct';
+import DeleteProduct from '../components/delPro';
+import Roles from '../components/roles';
+import NewRole from '../components/newRole';
+import ViewRole from '../components/viewRole';
+import EditRole from '../components/editRole';
+import Permissions from '../components/permissions';
+import NewPermission from '../components/newPermission';
+import ViewPermission from '../components/viewPermission';
+import EditPermission from '../components/editPermission';
 
 const routes = [
     {
-        path : '/admin',
-        components : {
-            default : AllProducts,
+        path: '/admin',
+        components: {
+            default: AllProducts,
         },
-        name : 'products',
-                
+        name: 'products',
     },
 
     {
-        path : '/admin/products',
-        components : {
-            default : AllProducts,
+        path: '/admin/products',
+        components: {
+            default: AllProducts,
         },
-        name : 'allProducts',
-                
+        name: 'allProducts',
     },
 
     {
-        path : '/admin/products/create',
-        components : {
-            default: NewProduct
+        path: '/admin/products/create',
+        components: {
+            default: NewProduct,
         },
-        name : 'createProducts',
-                
+        name: 'createProducts',
     },
 
     {
-        path : '/admin/products/:id',
-        components : {
-            default : ViewProduct,
+        path: '/admin/products/:id',
+        components: {
+            default: ViewProduct,
         },
-        name : 'viewProduct',
-                
+        name: 'viewProduct',
     },
 
     {
-        path : '/admin/products/:id/edit',
-        components : {
-            default : EditProduct,
+        path: '/admin/products/:id/edit',
+        components: {
+            default: EditProduct,
         },
-        name : 'editProduct',
-                
+        name: 'editProduct',
     },
 
     {
-        path : '/admin/products/delete',
-        components : {
-            default : DeleteProduct,
+        path: '/admin/products/delete',
+        components: {
+            default: DeleteProduct,
         },
-        name : 'deleteProduct',
-                
+        name: 'deleteProduct',
     },
 
     {
-        path : '/admin/roles',
-        components : {
-            default: Roles
+        path: '/admin/roles',
+        components: {
+            default: Roles,
         },
-        name : 'roles',  
+        name: 'roles',
     },
 
     {
-        path : '/admin/roles/create',
-        components : {
-            default: NewRole
+        path: '/admin/roles/create',
+        components: {
+            default: NewRole,
         },
-        name : 'createRole',
-                
+        name: 'createRole',
     },
 
     {
-        path : '/admin/roles/:id',
-        components : {
-            default : ViewRole
+        path: '/admin/roles/:id',
+        components: {
+            default: ViewRole,
         },
-        name : 'viewRole'
+        name: 'viewRole',
     },
 
     {
-        path : '/admin/roles/:id/edit',
-        components : {
-            default : EditRole
+        path: '/admin/roles/:id/edit',
+        components: {
+            default: EditRole,
         },
-        name : 'editRole'
+        name: 'editRole',
     },
 
     {
-        path : '/admin/permissions',
-        components : {
-            default: Permissions
+        path: '/admin/permissions',
+        components: {
+            default: Permissions,
         },
-        name : 'permissions',
-                
+        name: 'permissions',
     },
 
     {
-        path : '/admin/permissions/create',
-        components : {
-            default: NewPermission
+        path: '/admin/permissions/create',
+        components: {
+            default: NewPermission,
         },
-        name : 'createPermission',
-                
+        name: 'createPermission',
     },
 
     {
-        path : '/admin/permissions/:id',
-        components : {
-            default : ViewPermission
+        path: '/admin/permissions/:id',
+        components: {
+            default: ViewPermission,
         },
-        name : 'viewPermission'
+        name: 'viewPermission',
     },
 
     {
-        path : '/admin/permissions/:id/edit',
-        components : {
-            default : EditPermission
+        path: '/admin/permissions/:id/edit',
+        components: {
+            default: EditPermission,
         },
-        name : 'editPermission'
+        name: 'editPermission',
     },
-]
+];
 
-export default routes
+export default routes;

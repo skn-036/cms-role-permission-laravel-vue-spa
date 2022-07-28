@@ -15,35 +15,38 @@
         <h3 class="my-3">Edit Product</h3>
         <h4 class="text-danger">We dont want to delete products here ....</h4>
 
-        <router-link :to="{ name : 'products' }" class="btn btn-warning my-3">Back</router-link>
+        <router-link :to="{ name: 'products' }" class="btn btn-warning my-3"
+            >Back</router-link
+        >
     </section>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                product : {},
-                loading : false
-            }
-        },
+export default {
+    data() {
+        return {
+            product: {},
+            loading: false,
+        };
+    },
 
-        methods : {
-            deleteProduct() {
-                this.loading = true
-                axios.get('/api/admin/products/delete')
+    methods: {
+        deleteProduct() {
+            this.loading = true;
+            axios
+                .get('/api/admin/products/delete')
                 .then(response => {
-                    this.product = response.data
-                    this.loading = false
+                    this.product = response.data;
+                    this.loading = false;
                 })
                 .catch(error => {
-                    console.log(error)
-                }) 
-            }
+                    console.log(error);
+                });
         },
+    },
 
-        created() {
-            this.deleteProduct()
-        }
-    }
+    created() {
+        this.deleteProduct();
+    },
+};
 </script>
