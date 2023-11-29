@@ -21,7 +21,7 @@ app.use(pinia)
     .use(Toast, {
         pauseOnFocusLoss: false,
         hideProgressBar: true,
-        timeout: 8000,
+        timeout: 10000,
     })
     .directive('focus', focus)
     .mount('#app');

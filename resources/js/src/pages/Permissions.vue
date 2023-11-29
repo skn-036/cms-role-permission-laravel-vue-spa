@@ -64,8 +64,6 @@ const onDelete = (permission) => {
                 <CreateButton @click="showSlider(true)" />
             </div>
 
-            <UnAuthorized />
-
             <div class="w-full">
                 <Table>
                     <THead>

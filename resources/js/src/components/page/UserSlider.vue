@@ -284,5 +284,4 @@ const onSubmit = async () => {
             </div>
         </AuthorizationFallback>
     </Slider>
-    <!-- </AuthorizationFallback> -->
 </template>
