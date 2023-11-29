@@ -1,5 +1,4 @@
 <script setup>
-import { watch } from 'vue';
 import Table from '../components/table/Table.vue';
 import THead from '../components/table/THead.vue';
 import TBody from '../components/table/TBody.vue';
@@ -51,8 +50,6 @@ const onDelete = (user) => {
 
                 <CreateButton @click="showSlider(true)" />
             </div>
-
-            <UnAuthorized />
 
             <div class="w-full">
                 <Table>

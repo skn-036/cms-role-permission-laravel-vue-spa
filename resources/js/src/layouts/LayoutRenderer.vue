@@ -12,7 +12,7 @@ const layout = computed(() =>
 </script>
 
 <template>
-    <div class="">
+    <div>
         <LayoutDashboard v-if="layout === 'dashboard'" />
 
         <!-- full layout -->
