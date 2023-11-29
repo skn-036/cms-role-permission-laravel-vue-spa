@@ -1,40 +1,32 @@
 {
     "private": true,
+    "type": "module",
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production",
-        "format-vue": "npx prettier --print-width 80 --tab-width 4 --arrow-parens avoid --single-quote --trailing-comma es5 --write resources/js/**/*.vue",
-        "format-js": "npx prettier --print-width 80 --tab-width 4 --arrow-parens avoid --single-quote --trailing-comma es5 --write resources/js/**/*.js",
-        "format-php": "npx prettier --print-width 80 --tab-width 4 --single-quote --trailing-comma es5 --write app/**/*.php"
+        "dev": "vite",
+        "build": "vite build"
     },
     "devDependencies": {
-        "axios": "^0.21",
-        "bootstrap": "^4.0.0",
-        "jquery": "^3.2",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "popper.js": "^1.12",
-        "postcss": "^8.1.14",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
-        "sass-loader": "^8.0.0",
-        "vue": "^2.6.12",
-        "vue-loader": "^15.9.5",
-        "vue-template-compiler": "^2.6.10"
+        "@prettier/plugin-php": "^0.21.0",
+        "@vitejs/plugin-vue": "^4.5.0",
+        "autoprefixer": "^10.4.16",
+        "axios": "^1.6.1",
+        "laravel-vite-plugin": "^0.8.0",
+        "postcss": "^8.4.31",
+        "prettier": "^3.1.0",
+        "tailwindcss": "^3.3.5",
+        "tailwindcss-animation-delay": "^1.2.0",
+        "vite": "^4.0.0"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-svg-core": "^1.2.35",
-        "@fortawesome/free-solid-svg-icons": "^5.15.3",
-        "@fortawesome/vue-fontawesome": "^2.0.2",
-        "@vue/cli": "^4.5.12",
-        "laravel-vue-pagination": "^2.3.1",
-        "vue-resource": "^1.5.2",
-        "vue-router": "^3.5.1",
-        "vuex": "^3.6.2"
+        "dotenv": "^16.3.1",
+        "pinia": "^2.1.7",
+        "tiny-emitter": "^2.1.0",
+        "uuid": "^9.0.1",
+        "vue": "^3.3.9",
+        "vue-loader": "^17.3.1",
+        "vue-router": "^4.2.5",
+        "vue-select": "^4.0.0-beta.6",
+        "vue-toastification": "^2.0.0-rc.5",
+        "yup": "^1.3.2"
     }
 }

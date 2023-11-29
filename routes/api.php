@@ -2,37 +2,104 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PermissionController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-Route::post('/login', [AuthController::class, 'login']);
+/**
+ * ------------------------------------------------------------------------
+ * auth routes
+ * ------------------------------------------------------------------------
+ */
+Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::get('auth/verify', [
+    \App\Http\Controllers\AuthController::class,
+    'verify',
+]);
 
-Route::group(['middleware' => ['auth:sanctum', 'admin']], function() {
-
-    Route::get('/logout', [AuthController::class, 'logout']);
-
-    Route::get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->group(function () {
+    /**
+     * ------------------------------------------------------------------------
+     * common routes
+     * ------------------------------------------------------------------------
+     */
+    Route::get('logout', [
+        \App\Http\Controllers\AuthController::class,
+        'logout',
+    ]);
+    Route::get('user', function (Request $request) {
         return $request->user();
     });
 
-    Route::group(['prefix' => 'admin'], function(){
-        Route::get('/', [ProductController::class, 'index']);
-        Route::get('/products/delete', [ProductController::class, 'del']);
-        
-        Route::resource('products', ProductController::class)->only(['index', 'show', 'create', 'edit']);
-        Route::resource('roles', RoleController::class);
-        Route::resource('permissions', PermissionController::class);
-    });
+    /**
+     * ------------------------------------------------------------------------
+     * users routes
+     * ------------------------------------------------------------------------
+     */
+    Route::get('users', [
+        \App\Http\Controllers\UserController::class,
+        'index',
+    ])->middleware('permission:users-all|users-view');
+
+    Route::post('users', [
+        \App\Http\Controllers\UserController::class,
+        'store',
+    ])->middleware('permission:users-all|users-create');
+
+    Route::patch('users/{userId}', [
+        \App\Http\Controllers\UserController::class,
+        'update',
+    ])->middleware('permission:users-all|users-edit');
+
+    Route::delete('users/{userId}', [
+        \App\Http\Controllers\UserController::class,
+        'destroy',
+    ])->middleware('permission:users-all|users-delete');
+
+    /**
+     * ------------------------------------------------------------------------
+     * roles routes
+     * ------------------------------------------------------------------------
+     */
+    Route::get('roles', [
+        \App\Http\Controllers\RoleController::class,
+        'index',
+    ])->middleware('permission:roles-all|roles-view');
+
+    Route::post('roles', [
+        \App\Http\Controllers\RoleController::class,
+        'store',
+    ])->middleware('permission:roles-all|roles-create');
+
+    Route::patch('roles/{roleId}', [
+        \App\Http\Controllers\RoleController::class,
+        'update',
+    ])->middleware('permission:roles-all|roles-edit');
+
+    Route::delete('roles/{roleId}', [
+        \App\Http\Controllers\RoleController::class,
+        'destroy',
+    ])->middleware('permission:roles-all|roles-delete');
+
+    /**
+     * ------------------------------------------------------------------------
+     * permissions routes
+     * ------------------------------------------------------------------------
+     */
+    Route::get('permissions', [
+        \App\Http\Controllers\PermissionController::class,
+        'index',
+    ])->middleware('permission:permissions-all|permissions-view');
+
+    Route::post('permissions', [
+        \App\Http\Controllers\PermissionController::class,
+        'store',
+    ])->middleware('permission:permissions-all|permissions-create');
+
+    Route::patch('permissions/{permissionId}', [
+        \App\Http\Controllers\PermissionController::class,
+        'update',
+    ])->middleware('permission:permissions-all|permissions-edit');
+
+    Route::delete('permissions/{permissionId}', [
+        \App\Http\Controllers\PermissionController::class,
+        'destroy',
+    ])->middleware('permission:permissions-all|permissions-delete');
 });

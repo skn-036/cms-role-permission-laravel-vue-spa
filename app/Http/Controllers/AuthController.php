@@ -3,66 +3,67 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Traits\Error;
+use App\Traits\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function login(Request $request) {
+    use Error, Helpers;
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    public function login(Request $request)
+    {
+        try {
+            $credentials = $request->validate([
+                'email' => ['required', 'email'],
+                'password' => ['required'],
+            ]);
 
-        if($validator->fails()) {
-            $msg = [];
-
-            foreach(array_values($validator->errors()->toArray()) as $val) {
-                foreach($val as $error) {
-                    $msg[] = $error;
-                }
-
+            $user = User::with('roles.permissions')
+                ->where('email', $credentials['email'])
+                ->first();
+            if (
+                !$user ||
+                !Hash::check($credentials['password'], $user->password)
+            ) {
+                throw new \Exception(
+                    'Error|Credentials doesn\'t match--403',
+                    13333
+                );
             }
 
-            $res = [
-                'response_index' => true,
-                'response_type' => 'error',
-                'response_data' => $msg,
-                'authenticated' => false,
-            ];
+            $request->session()->regenerate();
+            Auth::loginUsingId($user->id, true);
 
-            return response()->json($res, 200);
-        }
-
-        if(Auth::attempt($request->only('email', 'password'))) {
-            $res = [
-                'response_index' => true,
-                'response_type' => 'success',
-                'response_data' => ['You Have Logged In Successfully'],
-                'authenticated' => true,
-            ];
-
-            return response()->json($res, 200); 
-        }
-
-        else {
-            $res = [
-                'response_index' => true,
-                'response_type' => 'error',
-                'response_data' => ['Given Credentials Does Not Match Our Record'],
-                'authenticated' => false,
-            ];
-
-            return response()->json($res, 200);
+            return response()->json($this->extractPermissionsFromUser($user));
+        } catch (\Exception $error) {
+            return $this->errorResponse($error);
         }
     }
 
-    public function logout(Request $request) {
-        Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        return response()->json('logout successfull');
+    public function verify()
+    {
+        if (!($id = Auth::id())) {
+            return response()->json(['message' => 'Unauthenticated.'], 401);
+        }
+        $user = User::with('roles.permissions')->find($id);
+
+        return response()->json($this->extractPermissionsFromUser($user));
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            Auth::guard('web')->logout();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return response()->json(true);
+        } catch (\Exception $error) {
+            return $this->errorResponse($error);
+        }
     }
 }

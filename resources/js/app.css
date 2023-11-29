@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Nabla:EDPT,EHLT@30..200,24&display=swap');
+
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+}
+a:hover {
+    color: #747bff;
+}
+
+.dark a:hover {
+    color: #535bf2;
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .flex-start {
+        @apply flex flex-row items-center;
+    }
+    .flex-between {
+        @apply flex flex-row justify-between items-center;
+    }
+    .flex-center {
+        @apply flex flex-row justify-center items-center;
+    }
+    .flex-end {
+        @apply flex flex-row justify-end items-center;
+    }
+}
+
+@font-palette-values --Nabla {
+    font-family: Nabla;
+    /* base-palette: 1; */
+
+    override-colors:
+        0 #fb923c,
+        1 #009688,
+        2 #fb923c,
+        3 #009688,
+        4 #009688,
+        5 #6ee7b7,
+        6 #16a34a,
+        7 #6ee7b7,
+        8 #009688,
+        9 #fda4af;
+}
+
+span.logo-char {
+    animation: depth 1s ease-in-out alternate infinite;
+    position: relative;
+    display: inline-block;
+    font-variation-settings: 'EDPT' 30;
+    font-palette: --Nabla;
+}
+
+@keyframes depth {
+    0% {
+        transform: translatex(0) translatey(0);
+    }
+    100% {
+        font-variation-settings: 'EDPT' 200;
+        transform: translatex(0.07em) translatey(0.05em);
+    }
+}
+
+.edit-list-move,
+.edit-list-enter-active,
+.edit-list-leave-active {
+    transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.edit-list-enter-from,
+.edit-list-leave-to {
+    opacity: 0;
+    transform: scaleY(0.01) translate(30px, 0);
+}
+
+.edit-list-leave-active {
+    width: 100%;
+    position: absolute;
+}
