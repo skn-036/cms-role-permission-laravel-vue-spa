@@ -1,0 +1,11 @@
+{
+	"plugins": ["@prettier/plugin-php"],
+	"tabWidth": 4,
+	"trailingComma": "all",
+	"arrowParens": "always",
+	"printWidth": 80,
+	"semi": true,
+	"singleQuote": true,
+	"singleAttributePerLine": true,
+	"vueIndentScriptAndStyle": false
+}

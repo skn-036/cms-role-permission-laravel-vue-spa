@@ -1,32 +1,29 @@
-require('./bootstrap');
+import { createApp } from 'vue';
+import App from './App.vue';
+import './app.css';
+import 'vue-select/dist/vue-select.css';
+import './src/assets/css/vue-select-override.css';
+import './src/utils/axios';
 
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import VueResource from 'vue-resource';
+import router from './src/router';
+import { createPinia } from 'pinia';
 
-import Router from './Router';
-import Store from './Store';
+import Toast from 'vue-toastification';
+import 'vue-toastification/dist/index.css';
 
-//font awesome
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrashAlt, faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import focus from './src/directives/focus';
 
-library.add(faTrashAlt, faEdit, faEye);
-Vue.component('font-awesome-icon', FontAwesomeIcon);
+const app = createApp(App);
+const pinia = createPinia();
 
-Vue.use(VueRouter);
-Vue.use(VueResource);
+app.use(pinia)
+    .use(router)
+    .use(Toast, {
+        pauseOnFocusLoss: false,
+        hideProgressBar: true,
+        timeout: 8000,
+    })
+    .directive('focus', focus)
+    .mount('#app');
 
-import Cms from './Components/cms';
-
-const cms = new Vue({
-    el: '#app',
-
-    components: {
-        Cms,
-    },
-
-    router: Router,
-    store: Store,
-});
+app.config.warnHandler = () => null;
