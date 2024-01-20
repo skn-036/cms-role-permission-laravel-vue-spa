@@ -120,7 +120,3 @@ Finally initiate your server on a new terminal and enjoy !!!
 <pre>
     <code>php artisan serve</code>
 </pre>
-
-## Api resource
-
-Postman collection for this repository can be found here in https://www.postman.com/cms-spa-036/workspace/cms-role-permission-laravel-vue
