@@ -29,7 +29,7 @@ class RoleController extends Controller
             }
             $role->save();
 
-            if ($request->permissions && is_array($request->permissions)) {
+            if (isset($request->permissions) && is_array($request->permissions)) {
                 $role->permissions()->sync($request->permissions);
             }
             return response()->json($role);
@@ -64,7 +64,7 @@ class RoleController extends Controller
             }
             $role->save();
 
-            if ($request->permissions && is_array($request->permissions)) {
+            if (isset($request->permissions) && is_array($request->permissions)) {
                 $role->permissions()->sync($request->permissions);
             }
             return response()->json($role);
